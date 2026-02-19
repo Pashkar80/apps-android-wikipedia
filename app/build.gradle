@@ -261,6 +261,7 @@ dependencies {
     androidTestImplementation libs.espresso.contrib
     androidTestImplementation libs.androidx.espresso.intents
     androidTestImplementation libs.espresso.web
+    androidTestImplementation "com.kaspersky.android-components:kaspresso:1.6.0"
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.uiautomator
     androidTestImplementation libs.room.testing
