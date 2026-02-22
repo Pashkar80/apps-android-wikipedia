@@ -1,6 +1,7 @@
 package org.wikipedia.lesson6
 
 import androidx.appcompat.widget.AppCompatImageView
+import io.github.kakaocup.kakao.check.KCheckBox
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.progress.KSeekBar
 import io.github.kakaocup.kakao.switch.KSwitch
@@ -53,21 +54,21 @@ val increaseTextSizeView= KTextView{
     withId(R.id.buttonIncreaseTextSize)
 }
 
-val themeReadingFocusSwitch = KSwitch {
+val themeReadingFocusSwitch = KCheckBox {
     withId(R.id.theme_chooser_reading_focus_mode_switch)
 }
 val themeChooserReadingFocusModeView = KTextView{
     withId(R.id.theme_chooser_reading_focus_mode_description)
 }
-val matchSystemThemeSwitch = KSwitch {
+val matchSystemThemeSwitch = KCheckBox {
     withId(R.id.theme_chooser_match_system_theme_switch)
         }
-val darkModeDimImagesSwitch = KSwitch {
+val darkModeDimImagesSwitch = KCheckBox {
     withId(R.id.theme_chooser_dark_mode_dim_images_switch)
 }
 
 val titleView = KTextView{
-    withText("Theme")
+    withText(R.string.color_theme_select)
 }
 
 val image = KImageView{
