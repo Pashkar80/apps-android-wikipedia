@@ -8,25 +8,25 @@ import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
 
-class TopReadItem(matcher: Matcher<View>) : KRecyclerItem<TopReadItem>(matcher){
+class TopReadItem(matcher: Matcher<View>) : KRecyclerItem<TopReadItem>(matcher) {
 
-   val header = KTextView (matcher){
-       withId(R.id.view_card_header_title)
-   }
+    val header = KTextView(matcher) {
+        withId(R.id.view_card_header_title)
+    }
 
-    val menu = KImageView (matcher){
+    val menu = KImageView(matcher) {
         withId(R.id.view_list_card_header_menu)
     }
 
-    val moreTopReadButton = KTextView(matcher){
+    val moreTopReadButton = KTextView(matcher) {
         withId(R.id.footerActionButton)
     }
 
     val topReadArticleRecycler = KRecyclerView(
-        builder = {R.id.view_list_card_header},
+        parent = matcher,
+        builder = { R.id.view_list_card_list },
         itemTypeBuilder = {
             itemType(::TopReadArticleItem)
         }
     )
-
 }

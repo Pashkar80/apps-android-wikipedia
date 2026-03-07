@@ -18,11 +18,10 @@ class TopReadArticleItem(matcher: Matcher<View>) : KRecyclerItem<TopReadArticleI
     val graph = KView(matcher) {
         withId(R.id.view_list_card_item_graph)
     }
-    val count = KTextView(matcher){
+    val count = KTextView(matcher) {
         withId(R.id.view_list_card_item_pageviews)
     }
-    val numberView = KTextView(matcher){
+    val numberView = KTextView(matcher) {
         withId(R.id.numberView)
     }
-
 }

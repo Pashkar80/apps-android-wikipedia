@@ -41,7 +41,7 @@ android {
         targetSdk = 36
         versionCode 50565
         testApplicationId 'org.wikipedia.test'
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.kaspersky.kaspresso.runner.KaspressoRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
 
         vectorDrawables.useSupportLibrary = true

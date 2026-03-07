@@ -19,6 +19,7 @@ object ExplorerScreen : KScreen<ExplorerScreen>() {
         withId(R.id.day_header_text)
     }
 
+
     val item = KRecyclerView(
         builder = { withId(R.id.feed_view) },
         itemTypeBuilder = {
@@ -26,6 +27,7 @@ object ExplorerScreen : KScreen<ExplorerScreen>() {
             itemType(::CustomizeItem)
             itemType(::TopReadItem)
             itemType(::InTheNewsItem)
+            itemType(::FuturedArticleItem)
         }
     )
 

@@ -13,8 +13,7 @@ class InTheNewsArticleItem(matcher: Matcher<View>) : KRecyclerItem<InTheNewsArti
         withId(R.id.horizontal_scroll_list_item_image)
     }
 
-    val text = KTextView(matcher){
+    val text = KTextView(matcher) {
         withId(R.id.horizontal_scroll_list_item_text)
     }
-
 }

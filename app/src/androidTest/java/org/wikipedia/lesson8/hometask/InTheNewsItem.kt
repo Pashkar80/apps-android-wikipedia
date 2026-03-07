@@ -19,11 +19,10 @@ class InTheNewsItem(matcher: Matcher<View>) : KRecyclerItem<InTheNewsItem>(match
     }
 
     val topReadArticleRecycler = KRecyclerView(
+        parent = matcher,
         builder = { R.id.view_list_card_header },
         itemTypeBuilder = {
             itemType(::InTheNewsArticleItem)
         }
     )
-
-
 }

@@ -8,7 +8,8 @@ import org.hamcrest.Matcher
 
 class SearchItem(matcher: Matcher<View>) : KRecyclerItem<SearchItem>(matcher) {
     val icon = KImageView(matcher) {
-        isInstanceOf(AppCompatImageView::class.java)
-        isDisplayed()
+        withIndex(0) {
+            isInstanceOf(AppCompatImageView::class.java)
+        }
     }
 }
