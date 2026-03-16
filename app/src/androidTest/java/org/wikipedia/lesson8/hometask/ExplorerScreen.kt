@@ -3,6 +3,7 @@ package org.wikipedia.lesson8.hometask
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
+import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
@@ -19,6 +20,14 @@ object ExplorerScreen : KScreen<ExplorerScreen>() {
         withId(R.id.day_header_text)
     }
 
+    val retryButton = KButton {
+        withId(R.id.view_card_offline_button_retry)
+    }
+
+    val offlineCardText = KTextView {
+        withText(R.string.view_offline_card_text)
+    }
+
 
     val item = KRecyclerView(
         builder = { withId(R.id.feed_view) },
@@ -30,6 +39,4 @@ object ExplorerScreen : KScreen<ExplorerScreen>() {
             itemType(::FuturedArticleItem)
         }
     )
-
-
 }
