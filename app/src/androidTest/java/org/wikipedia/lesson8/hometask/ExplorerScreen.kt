@@ -24,8 +24,16 @@ object ExplorerScreen : KScreen<ExplorerScreen>() {
         withId(R.id.view_card_offline_button_retry)
     }
 
+    val closeButton = KButton {
+        withId(R.id.closeButton)
+    }
+
     val offlineCardText = KTextView {
         withText(R.string.view_offline_card_text)
+    }
+
+    val searchField = KTextView {
+        withText("Search Wikipedia")
     }
 
 
