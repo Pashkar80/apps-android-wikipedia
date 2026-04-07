@@ -137,7 +137,7 @@ android {
         custom {
             versionName computeVersionName(defaultConfig.versionCode, customChannel)
             // next line is for injecting a custom channel value into the custom/AndroidManifest.xml
-            manifestPlaceholders = [customChannel:getProperty('customChannel').toString()]
+            manifestPlaceholders = [customChannel: getProperty('customChannel').toString()]
             signingConfig = signingConfigs.prod
         }
     }
@@ -289,10 +289,48 @@ dependencies {
     androidTestImplementation(composeBom)
     debugImplementation(libs.compose.debug.test)
     debugImplementation(composeBom)
+    androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.6.0")
+}
+
+tasks.register("deleteLocalAllureResults", Delete) {
+    group = "verification"
+    description = "Deletes local allure-results directory"
+
+    def targetDir = file("build/allure-results")
+    delete targetDir
+}
+
+tasks.register("pullAllureResults", Exec) {
+    group = "verification"
+    description = "Pulls allure-results from device to app/build"
+
+    dependsOn tasks.named("deleteLocalAllureResults")
+
+    def adbCommand = ["adb", "pull", "/sdcard/Documents/allure-results", "build"]
+    commandLine adbCommand
+
+    ignoreExitValue true
+}
+
+tasks.register("clearDeviceAllureResults", Exec) {
+    group = "verification"
+    description = "Clears allure-results directory on Android device"
+
+    def adbCommand = ["adb", "shell", "rm", "-rf", "/sdcard/Documents/allure-results"]
+    commandLine adbCommand
+
+    ignoreExitValue true
+}
+
+tasks.withType(com.android.build.gradle.internal.tasks.AndroidTestTask).configureEach { Task task ->
+    if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
+        task.dependsOn tasks.named("clearDeviceAllureResults")
+        task.finalizedBy tasks.named("pullAllureResults")
+    }
 }
 
 private setSigningConfigKey(config, Properties props) {
-    if(props != null) {
+    if (props != null) {
         config.storeFile = props['keystore'] == null ? null : file(props['keystore'])
         config.storePassword = props['store.pass']
         config.keyAlias = props['key.alias']
