@@ -13,7 +13,7 @@ import org.wikipedia.lesson19.ext.name
 
 object ExploreScreen : NamedScreen<ExploreScreen>() {
 
-    override val screenName: String = "Explorer Screen"
+    override val screenName: String = "Explore Screen"
     override val layoutId: Int = R.id.feed_view
     override val viewClass: Class<*> = FeedView::class.java
 
@@ -41,6 +41,16 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
         withText("Search Wikipedia")
     }.name(withParent("Search Field"))
 
+    val moreButton = KTextView {
+        withText("More")
+        isCompletelyDisplayed()
+    }.name(withParent("More Button"))
+
+    val settingsButton = KTextView {
+        withText("Settings")
+        withParent({ withId(R.id.main_drawer_settings_container) })
+    }.name(withParent("Settings Button"))
+
     val items = KRecyclerView(
         builder = { withId(R.id.feed_view) },
         itemTypeBuilder = {
@@ -48,12 +58,12 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
             itemType(::CustomizeItem)
             itemType(::TopReadItem)
             itemType(::InTheNewsItem)
-            itemType(::FuturedArticleItem)
+            itemType(::FeaturedArticleItem)
         }
     ).name(withParent("Recycler Items"))
 
-
-    fun customizeBlock(fnc: CustomizeItem.() -> Unit) {
-        items.invokeWithText("Customize", fnc)
+    fun topReadBlock(fnc: TopReadItem.() -> Unit) {
+        items.invokeWithText("Top read", fnc)
     }
+
 }

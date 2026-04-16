@@ -9,7 +9,7 @@ import org.wikipedia.R
 import org.wikipedia.lesson19.ext.name
 import org.wikipedia.lesson19.ext.withParent
 
-class FuturedArticleItem(matcher: Matcher<View>) : KRecyclerItem<FuturedArticleItem>(matcher) {
+class FeaturedArticleItem(matcher: Matcher<View>) : KRecyclerItem<FeaturedArticleItem>(matcher) {
 
     val header by lazy {
         KTextView(matcher) {

@@ -7,7 +7,7 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
-import org.wikipedia.lesson19.ext.invokeWithText
+import org.wikipedia.lesson19.ext.invokeAtIndex
 import org.wikipedia.lesson19.ext.name
 import org.wikipedia.lesson19.ext.withParent
 import org.wikipedia.lesson8.hometask.TopReadArticleItem
@@ -42,8 +42,7 @@ class TopReadItem(matcher: Matcher<View>) : KRecyclerItem<TopReadItem>(matcher) 
         ).name(withParent("Top Read Article Recycler"))
     }
 
-
-    fun topReadArticleItemByText(text: String, fnc: TopReadArticleItem.() -> Unit) {
-        topReadArticleRecycler.invokeWithText(text, fnc)
+    fun thirdArticle(fnc: TopReadArticleItem.() -> Unit) {
+        topReadArticleRecycler.invokeAtIndex(3, fnc)
     }
 }
