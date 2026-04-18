@@ -5,10 +5,12 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.wikipedia.R
+import org.wikipedia.feed.featured.FeaturedArticleCardView
 import org.wikipedia.feed.view.FeedView
 import org.wikipedia.lesson18.NamedScreen
 import org.wikipedia.lesson19.ext.invokeWithText
 import org.wikipedia.lesson19.ext.name
+import org.wikipedia.lesson21.invokeAtIndexAndClass
 
 
 object ExploreScreen : NamedScreen<ExploreScreen>() {
@@ -66,4 +68,16 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
         items.invokeWithText("Top read", fnc)
     }
 
+    fun featuredArticleBlock(index: Int, fnc: FeaturedArticleItem.() -> Unit) {
+        items.invokeAtIndexAndClass(
+            index,
+            (index + 1) * 10,
+            1,
+            FeaturedArticleCardView::class.java,
+            "Featured Article",
+            fnc
+        )
+        
+
+    }
 }

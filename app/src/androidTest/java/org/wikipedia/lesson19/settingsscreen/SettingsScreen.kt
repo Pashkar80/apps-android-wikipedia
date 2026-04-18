@@ -16,11 +16,16 @@ object SettingsScreen : NamedScreen<SettingsScreen>() {
         builder = { withId(R.id.recycler_view) },
         itemTypeBuilder = {
             itemType(::ShowLinkPreviewsItem)
+            itemType(::DownloadWiFiItem)
         }
     ).name(withParent("Settings Recycler Items"))
 
     fun showLinkPreviewsBlock(fnc: ShowLinkPreviewsItem.() -> Unit) {
         items.invokeWithText("Show link previews", fnc)
+    }
+
+    fun downloadWiFiBlock(fnc: DownloadWiFiItem.() -> Unit) {
+        items.invokeWithText("Download only over Wi-Fi", fnc)
     }
 
 }

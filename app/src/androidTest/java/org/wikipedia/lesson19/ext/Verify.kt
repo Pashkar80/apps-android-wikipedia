@@ -4,6 +4,7 @@ import io.github.kakaocup.kakao.check.CheckableAssertions
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.text.TextViewAssertions
+import org.wikipedia.lesson20.ext.equalsWithTrim
 
 class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
 
@@ -19,6 +20,13 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
     fun isNotChecked(element: CheckableAssertions) {
         steps.isNotChecked(
             "Verify toggle is not checked '${(element as BaseActions).getName()}'",
+            element
+        )
+    }
+
+    fun isChecked(element: CheckableAssertions) {
+        steps.isChecked(
+            "Verify toggle is checked '${(element as BaseActions).getName()}'",
             element
         )
     }
@@ -46,5 +54,9 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
             "Проверяет, что элемент '${(element as BaseActions).getName()}' отсутствует",
             element
         )
+    }
+
+    fun equalsWithTrim(text: String, element: TextViewAssertions) {
+        element.equalsWithTrim(text)
     }
 }

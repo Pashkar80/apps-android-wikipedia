@@ -26,6 +26,12 @@ class StepDefinitions(private val testContext: TestContext<*>) {
         }
     }
 
+    fun isChecked(step: String, element: CheckableAssertions) {
+        execute(step) {
+            element.isChecked()
+        }
+    }
+
     fun hasText(step: String, element: TextViewAssertions, text: String, isSubstring: Boolean) {
         execute(step) {
             if (isSubstring) {
