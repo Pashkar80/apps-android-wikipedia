@@ -33,9 +33,3 @@ class MultiAction(private val enableText: String?) : ViewAction {
         }
     }
 }
-/*
-Очень важна последовательность в методе perform потому
-как button - checkable и метод некорректно работать
-с checkbox не добился толку потому что view - MaterialSwitch
-а KCheckBox - нет
- */

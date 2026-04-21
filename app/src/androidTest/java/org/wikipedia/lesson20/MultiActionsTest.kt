@@ -8,6 +8,7 @@ import org.wikipedia.lesson19.ext.action
 import org.wikipedia.lesson19.ext.verify
 import org.wikipedia.lesson19.settingsscreen.SettingsScreen
 import org.wikipedia.lesson20.searchscreen.SearchScreen
+import org.wikipedia.lesson21.navbar.NavBarScreen
 
 class MultiActionsTest : BaseTest() {
     private val text = "Hello world"
@@ -16,7 +17,7 @@ class MultiActionsTest : BaseTest() {
     fun multiActionTest() {
         run {
             OnboardingScreen {
-                action.multiAction(skipButton, text)
+                action.multiAction(skipButton)
             }
 
             ExploreScreen {
@@ -32,7 +33,7 @@ class MultiActionsTest : BaseTest() {
             repeat(2) {
                 device.uiDevice.pressBack()
             }
-            ExploreScreen {
+            NavBarScreen {
                 action.apply {
                     click(moreButton)
                     click(settingsButton)

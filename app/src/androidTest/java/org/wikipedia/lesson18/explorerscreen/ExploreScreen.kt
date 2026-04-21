@@ -10,7 +10,8 @@ import org.wikipedia.feed.view.FeedView
 import org.wikipedia.lesson18.NamedScreen
 import org.wikipedia.lesson19.ext.invokeWithText
 import org.wikipedia.lesson19.ext.name
-import org.wikipedia.lesson21.invokeAtIndexAndClass
+import org.wikipedia.lesson21.extentions.invokeAtIndexAndClass
+import org.wikipedia.lesson22.SearchWidget
 
 
 object ExploreScreen : NamedScreen<ExploreScreen>() {
@@ -18,6 +19,12 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
     override val screenName: String = "Explore Screen"
     override val layoutId: Int = R.id.feed_view
     override val viewClass: Class<*> = FeedView::class.java
+
+    val searchWidget by lazy {
+        SearchWidget {
+            withId(R.id.search_container)
+        }.name(withParent("Search Widget"))
+    }
 
     val logo = KImageView {
         withId(R.id.main_toolbar_wordmark)
@@ -43,16 +50,6 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
         withText("Search Wikipedia")
     }.name(withParent("Search Field"))
 
-    val moreButton = KTextView {
-        withText("More")
-        isCompletelyDisplayed()
-    }.name(withParent("More Button"))
-
-    val settingsButton = KTextView {
-        withText("Settings")
-        withParent({ withId(R.id.main_drawer_settings_container) })
-    }.name(withParent("Settings Button"))
-
     val items = KRecyclerView(
         builder = { withId(R.id.feed_view) },
         itemTypeBuilder = {
@@ -77,7 +74,5 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
             "Featured Article",
             fnc
         )
-        
-
     }
 }
