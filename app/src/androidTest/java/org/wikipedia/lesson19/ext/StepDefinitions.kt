@@ -32,6 +32,18 @@ class StepDefinitions(private val testContext: TestContext<*>) {
         }
     }
 
+    fun isEnabled(step: String, element: BaseAssertions) {
+        execute(step) {
+            element.isEnabled()
+        }
+    }
+
+    fun isDisabled(step: String, element: BaseAssertions) {
+        execute(step) {
+            element.isDisabled()
+        }
+    }
+
     fun hasText(step: String, element: TextViewAssertions, text: String, isSubstring: Boolean) {
         execute(step) {
             if (isSubstring) {

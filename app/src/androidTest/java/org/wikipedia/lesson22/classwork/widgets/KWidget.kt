@@ -1,4 +1,4 @@
-package org.wikipedia.lesson22
+package org.wikipedia.lesson22.classwork.widgets
 
 import android.view.View
 import io.github.kakaocup.kakao.common.actions.BaseActions

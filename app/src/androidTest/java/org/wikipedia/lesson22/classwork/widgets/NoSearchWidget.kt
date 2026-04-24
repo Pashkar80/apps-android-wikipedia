@@ -1,4 +1,4 @@
-package org.wikipedia.lesson22
+package org.wikipedia.lesson22.classwork.widgets
 
 import io.github.kakaocup.kakao.common.builders.ViewBuilder
 import io.github.kakaocup.kakao.image.KImageView
@@ -15,15 +15,10 @@ class NoSearchWidget(builder: ViewBuilder.() -> Unit) : KWidget<NoSearchWidget>(
         }.name(withParent("Image"))
     }
 
-    val title by lazy {
-        KTextView(matcher) {
-            withId(R.id.history_title)
-        }.name(withParent("Title"))
-    }
 
     val description by lazy {
         KTextView(matcher) {
-            withId(R.id.history_list)
-        }.name(withParent("History List"))
+            withId(R.id.history_empty_title)
+        }.name(withParent("History Title"))
     }
 }

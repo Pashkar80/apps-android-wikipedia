@@ -31,6 +31,20 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
         )
     }
 
+    fun isEnabled(element: BaseAssertions) {
+        steps.isEnabled(
+            "Verify element is enabled '${(element as BaseActions).getName()}'",
+            element
+        )
+    }
+
+    fun isDisabled(element: BaseAssertions) {
+        steps.isDisabled(
+            "Verify element is disables '${(element as BaseActions).getName()}'",
+            element
+        )
+    }
+
     fun hasText(element: TextViewAssertions, text: String) {
         steps.hasText(
             "Verify that text in element '${(element as BaseActions).getName()}' equals '$text'",

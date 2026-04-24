@@ -11,7 +11,7 @@ import org.wikipedia.lesson18.NamedScreen
 import org.wikipedia.lesson19.ext.invokeWithText
 import org.wikipedia.lesson19.ext.name
 import org.wikipedia.lesson21.extentions.invokeAtIndexAndClass
-import org.wikipedia.lesson22.SearchWidget
+import org.wikipedia.lesson22.classwork.widgets.SearchWidget
 
 
 object ExploreScreen : NamedScreen<ExploreScreen>() {
@@ -37,10 +37,6 @@ object ExploreScreen : NamedScreen<ExploreScreen>() {
     val retryButton = KButton {
         withId(R.id.view_card_offline_button_retry)
     }.name(withParent("Button Retry"))
-
-    val closeButton = KButton {
-        withId(R.id.closeButton)
-    }.name(withParent("Button Close"))
 
     val offlineCardText = KTextView {
         withText(R.string.view_offline_card_text)

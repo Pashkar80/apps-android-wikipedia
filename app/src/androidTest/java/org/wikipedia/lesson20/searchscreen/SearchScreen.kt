@@ -2,10 +2,11 @@ package org.wikipedia.lesson20.searchscreen
 
 import androidx.appcompat.R
 import io.github.kakaocup.kakao.edit.KEditText
+import io.github.kakaocup.kakao.text.KTextView
 import org.wikipedia.lesson18.NamedScreen
 import org.wikipedia.lesson19.ext.name
-import org.wikipedia.lesson22.NoSearchWidget
-import org.wikipedia.lesson22.SearchWidget
+import org.wikipedia.lesson22.classwork.widgets.NoSearchWidget
+import org.wikipedia.lesson22.classwork.widgets.SearchWidget
 
 object SearchScreen : NamedScreen<SearchScreen>() {
     override val screenName: String = "Search Screen"
@@ -16,6 +17,12 @@ object SearchScreen : NamedScreen<SearchScreen>() {
         KEditText {
             withId(R.id.search_src_text)
         }.name(withParent("Search Field"))
+    }
+
+    val title by lazy {
+        KTextView {
+            withId(org.wikipedia.R.id.history_title)
+        }.name(withParent("Title"))
     }
 
     val searchWidget by lazy {

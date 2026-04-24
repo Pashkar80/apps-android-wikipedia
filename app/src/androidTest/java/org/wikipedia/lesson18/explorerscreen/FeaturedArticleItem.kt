@@ -3,6 +3,7 @@ package org.wikipedia.lesson18.explorerscreen
 import android.view.View
 import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
+import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
@@ -28,4 +29,13 @@ class FeaturedArticleItem(matcher: Matcher<View>) : KRecyclerItem<FeaturedArticl
             withId(R.id.view_featured_article_card_footer)
         }.name(withParent("Footer"))
     }
+
+    val closeButton = KButton {
+        withId(R.id.closeButton)
+    }.name(withParent("Button Close"))
+
+    val themeButton = KTextView {
+        withText("Theme")
+        isDescendantOfA({ withId(R.id.page_actions_tab_layout) })
+    }.name(withParent("Button Theme"))
 }

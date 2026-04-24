@@ -1,4 +1,4 @@
-package org.wikipedia.lesson22
+package org.wikipedia.lesson22.classwork.widgets
 
 import com.google.android.material.textview.MaterialTextView
 import io.github.kakaocup.kakao.common.builders.ViewBuilder
