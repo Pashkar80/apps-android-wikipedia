@@ -2,6 +2,7 @@ package org.wikipedia.lesson19.ext
 
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.views.KBaseView
+import io.github.kakaocup.kakao.switch.SwitchableActions
 import org.wikipedia.lesson20.ext.multiAction
 
 class Actions(private val steps: StepDefinitions) : StepsDsl<Actions>() {
@@ -14,5 +15,13 @@ class Actions(private val steps: StepDefinitions) : StepsDsl<Actions>() {
 
     fun multiAction(element: KBaseView<*>, text: String? = null) {
         element.multiAction(text)
+    }
+
+    fun swipeSwitchLeft(element: SwitchableActions) {
+        steps.swipeSwitchLeft("Swipe switch left on '${element.getName()}'", element)
+    }
+
+    fun swipeSwitchRight(element: SwitchableActions) {
+        steps.swipeSwitchRight("Swipe switch right on '${element.getName()}'", element)
     }
 }
