@@ -4,12 +4,17 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.views.KBaseView
 import io.github.kakaocup.kakao.switch.SwitchableActions
 import org.wikipedia.lesson20.ext.multiAction
+import org.wikipedia.lesson23.kwebview.KWebViewElement
 
 class Actions(private val steps: StepDefinitions) : StepsDsl<Actions>() {
 
     override val self = this
 
     fun click(element: BaseActions) {
+        steps.click("Click on '${element.getName()}'", element)
+    }
+
+    fun click(element: KWebViewElement) {
         steps.click("Click on '${element.getName()}'", element)
     }
 

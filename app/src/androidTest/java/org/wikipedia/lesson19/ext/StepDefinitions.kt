@@ -8,13 +8,20 @@ import io.github.kakaocup.kakao.switch.SwitchableActions
 import io.github.kakaocup.kakao.switch.SwitchableActions.Direction.LEFT
 import io.github.kakaocup.kakao.switch.SwitchableActions.Direction.RIGHT
 import io.github.kakaocup.kakao.text.TextViewAssertions
-import org.wikipedia.lesson23.KWebViewElement
+import org.wikipedia.lesson23.kwebview.KWebViewElement
+import org.wikipedia.lesson23.kwebview.KWebViewList
 
 class StepDefinitions(private val testContext: TestContext<*>) {
 
     fun click(step: String, element: BaseActions) {
         execute(step) {
             element.click()
+        }
+    }
+
+    fun click(step: String, element: KWebViewElement) {
+        execute(step) {
+            element.performWebViewAction { click() }
         }
     }
 
@@ -25,6 +32,12 @@ class StepDefinitions(private val testContext: TestContext<*>) {
     }
 
     fun isDisplayed(step: String, element: KWebViewElement) {
+        execute(step) {
+            element.performWebViewAction { scroll() }
+        }
+    }
+
+    fun isDisplayed(step: String, element: KWebViewList) {
         execute(step) {
             element.performWebViewAction { scroll() }
         }
@@ -60,6 +73,16 @@ class StepDefinitions(private val testContext: TestContext<*>) {
                 element.containsText(text)
             } else {
                 element.hasText(text)
+            }
+        }
+    }
+
+    fun hasText(step: String, element: KWebViewElement, text: String, isSubstring: Boolean) {
+        execute(step) {
+            if (isSubstring) {
+                element.performWebViewAction { containsText(text) }
+            } else {
+                element.performWebViewAction { hasText(text) }
             }
         }
     }

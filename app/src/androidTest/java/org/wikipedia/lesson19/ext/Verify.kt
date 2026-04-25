@@ -5,7 +5,8 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.text.TextViewAssertions
 import org.wikipedia.lesson20.ext.equalsWithTrim
-import org.wikipedia.lesson23.KWebViewElement
+import org.wikipedia.lesson23.kwebview.KWebViewElement
+import org.wikipedia.lesson23.kwebview.KWebViewList
 
 class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
 
@@ -20,7 +21,14 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
 
     fun isDisplayed(element: KWebViewElement) {
         steps.isDisplayed(
-            "Verify text displayed '${element.getName()}'",
+            "Verify element displayed '${element.getName()}'",
+            element
+        )
+    }
+
+    fun isDisplayed(element: KWebViewList) {
+        steps.isDisplayed(
+            "Verify list displayed '${element.getName()}'",
             element
         )
     }
@@ -56,6 +64,15 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
     fun hasText(element: TextViewAssertions, text: String) {
         steps.hasText(
             "Verify that text in element '${(element as BaseActions).getName()}' equals '$text'",
+            element,
+            text,
+            false
+        )
+    }
+
+    fun hasText(element: KWebViewElement, text: String) {
+        steps.hasText(
+            "Verify that text in element '${element.getName()}' equals '$text'",
             element,
             text,
             false
