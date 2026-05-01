@@ -38,6 +38,11 @@ import org.wikipedia.compose.components.error.WikiErrorClickEvents
 import org.wikipedia.compose.components.error.WikiErrorView
 import org.wikipedia.compose.theme.BaseTheme
 import org.wikipedia.compose.theme.WikipediaTheme
+import org.wikipedia.compose.uitest.Tags.CANONICAL_LANGUAGE_NAME
+import org.wikipedia.compose.uitest.Tags.LANGUAGE_LIST
+import org.wikipedia.compose.uitest.Tags.LOCALIZED_LANGUAGE_NAME
+import org.wikipedia.compose.uitest.lazyListItemPosition
+import org.wikipedia.compose.uitest.lazyListSize
 import org.wikipedia.theme.Theme
 import org.wikipedia.util.StringUtil
 import org.wikipedia.util.UiState
@@ -87,6 +92,7 @@ fun LanguagesListScreen(
                     )
                 }
             }
+
             is UiState.Error -> {
                 Box(
                     modifier = modifier
@@ -102,6 +108,7 @@ fun LanguagesListScreen(
                     )
                 }
             }
+
             is UiState.Success -> {
                 val languagesItems = uiState.data
                 if (languagesItems.isEmpty()) {
@@ -124,7 +131,8 @@ fun LanguagesListScreen(
                     modifier = modifier
                         .fillMaxSize()
                         .padding(paddingValues)
-                        .testTag("language_list"),
+                        .testTag(LANGUAGE_LIST)
+                        .lazyListSize(languagesItems.size),
                 ) {
                     itemsIndexed(languagesItems) { index, languageItem ->
                         if (languageItem.headerText.isNotEmpty()) {
@@ -133,11 +141,13 @@ fun LanguagesListScreen(
                                     .height(56.dp)
                                     .fillMaxWidth()
                                     .padding(horizontal = 16.dp)
-                                    .padding(bottom = 4.dp),
+                                    .padding(bottom = 4.dp)
+                                    .lazyListItemPosition(index),
                                 title = languageItem.headerText
                             )
                         } else {
-                            val localizedLanguageName = StringUtil.capitalize(languageItem.localizedName).orEmpty()
+                            val localizedLanguageName =
+                                StringUtil.capitalize(languageItem.localizedName).orEmpty()
                             LanguageListItemView(
                                 modifier = Modifier
                                     .clickable(onClick = {
@@ -146,7 +156,8 @@ fun LanguagesListScreen(
                                     })
                                     .fillMaxWidth()
                                     .padding(16.dp)
-                                    .testTag(languageItem.canonicalName),
+                                    .testTag(languageItem.canonicalName)
+                                    .lazyListItemPosition(index),
                                 localizedLanguageName = localizedLanguageName,
                                 subtitle = languageItem.canonicalName
                             )
@@ -196,7 +207,8 @@ fun LanguageListItemView(
             style = MaterialTheme.typography.titleMedium.copy(
                 color = WikipediaTheme.colors.primaryColor,
                 fontWeight = FontWeight.Bold,
-            )
+            ),
+            modifier = Modifier.testTag(LOCALIZED_LANGUAGE_NAME)
         )
         if (subtitle != null) {
             Text(
@@ -205,7 +217,8 @@ fun LanguageListItemView(
                     color = WikipediaTheme.colors.secondaryColor,
                     textAlign = TextAlign.Center,
                     lineHeight = 24.sp,
-                )
+                ),
+                modifier = Modifier.testTag(CANONICAL_LANGUAGE_NAME)
             )
         }
     }
@@ -218,11 +231,16 @@ private fun LanguagesListScreenPreview() {
         LanguagesListScreen(
             modifier = Modifier
                 .fillMaxSize(),
-            uiState = UiState.Success(data = listOf(
-                LanguageListItem(code = "", headerText = "Languages"),
-                LanguageListItem(code = "en", canonicalName = "English", localizedName = "English"),
-                LanguageListItem(code = "he", canonicalName = "Hebrew", localizedName = "עברית")
-            )
+            uiState = UiState.Success(
+                data = listOf(
+                    LanguageListItem(code = "", headerText = "Languages"),
+                    LanguageListItem(
+                        code = "en",
+                        canonicalName = "English",
+                        localizedName = "English"
+                    ),
+                    LanguageListItem(code = "he", canonicalName = "Hebrew", localizedName = "עברית")
+                )
             ),
             { },
             { },

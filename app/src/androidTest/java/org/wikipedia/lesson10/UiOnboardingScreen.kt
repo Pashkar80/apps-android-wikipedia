@@ -42,7 +42,7 @@ object UiOnboardingScreen : UiScreen<UiOnboardingScreen>() {
         withId(this@UiOnboardingScreen.packageName, "fragment_pager")
     }
 
-    val languageOption = UiTextView {
+    val frenchLanguageOption = UiTextView {
         withId(this@UiOnboardingScreen.packageName, "option_label")
         containsText("Français")
     }

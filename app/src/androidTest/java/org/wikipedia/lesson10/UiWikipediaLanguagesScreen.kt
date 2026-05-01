@@ -4,16 +4,16 @@ import com.kaspersky.components.kautomator.component.common.views.UiView
 import com.kaspersky.components.kautomator.component.text.UiButton
 import com.kaspersky.components.kautomator.screen.UiScreen
 
-object WikipediaLanguagesScreen : UiScreen<WikipediaLanguagesScreen>() {
+object UiWikipediaLanguagesScreen : UiScreen<UiWikipediaLanguagesScreen>() {
     override val packageName: String = "org.wikipedia.alpha"
 
     val addLanguageButton = UiButton {
-        withId(this@WikipediaLanguagesScreen.packageName, "wiki_language_title")
+        withId(this@UiWikipediaLanguagesScreen.packageName, "wiki_language_title")
         withText("Add language")
     }
 
     val languageItem = UiView {
-        withId(this@WikipediaLanguagesScreen.packageName, "wiki_language_title")
+        withId(this@UiWikipediaLanguagesScreen.packageName, "wiki_language_title")
         withText("Français")
     }
 

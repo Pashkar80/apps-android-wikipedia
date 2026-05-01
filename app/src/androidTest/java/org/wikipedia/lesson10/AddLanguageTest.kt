@@ -18,7 +18,7 @@ class AddLanguageTest : TestCase() {
             UiOnboardingScreen.addLanguageButton.click()
         }
         step("Tap button add language") {
-            WikipediaLanguagesScreen.addLanguageButton.click()
+            UiWikipediaLanguagesScreen.addLanguageButton.click()
         }
         step("Verify that selected language is displayed and tap on it") {
             AddLanguagesScreen.frenchOption {
@@ -27,14 +27,14 @@ class AddLanguageTest : TestCase() {
             }
         }
         step("Verify that selected language is displayed and tap back button") {
-            WikipediaLanguagesScreen {
+            UiWikipediaLanguagesScreen {
                 languageItem.isDisplayed()
                 backButton.click()
             }
         }
         step("Verify that selected language is displayed in list") {
             UiOnboardingScreen {
-                languageOption.isDisplayed()
+                frenchLanguageOption.isDisplayed()
             }
         }
     }

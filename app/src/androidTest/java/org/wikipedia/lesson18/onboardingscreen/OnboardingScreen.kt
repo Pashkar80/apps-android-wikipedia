@@ -13,13 +13,23 @@ object OnboardingScreen : NamedScreen<OnboardingScreen>() {
     override val layoutId = null
     override val viewClass = null
 
-    val skipButton = KButton {
-        withId(R.id.fragment_onboarding_skip_button)
-    }.name(withParent("Button Skip"))
+    val skipButton by lazy {
+        KButton {
+            withId(R.id.fragment_onboarding_skip_button)
+        }.name(withParent("Button Skip"))
+    }
 
-    val continueButton = KButton {
-        withId(R.id.fragment_onboarding_forward_button)
-    }.name(withParent("Button Continue"))
+    val continueButton by lazy {
+        KButton {
+            withId(R.id.fragment_onboarding_forward_button)
+        }.name(withParent("Button Continue"))
+    }
+
+    val addLanguageButton by lazy {
+        KButton {
+            withId(R.id.addLanguageButton)
+        }.name(withParent("Button Add Language"))
+    }
 
     val pager = KViewPager2(
         builder = {

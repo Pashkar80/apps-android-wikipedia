@@ -1,6 +1,10 @@
 package org.wikipedia.lesson19.ext
 
+import com.kaspersky.components.kautomator.component.common.actions.UiBaseActions
+import com.kaspersky.components.kautomator.component.common.assertions.UiBaseAssertions
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
+import io.github.kakaocup.compose.node.action.NodeActions
+import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.kakao.check.CheckableAssertions
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
@@ -10,6 +14,8 @@ import io.github.kakaocup.kakao.switch.SwitchableActions.Direction.RIGHT
 import io.github.kakaocup.kakao.text.TextViewAssertions
 import org.wikipedia.lesson23.kwebview.KWebViewElement
 import org.wikipedia.lesson23.kwebview.KWebViewList
+import org.wikipedia.lesson24.ext.assertTrimmedTextIsEquals
+import org.wikipedia.lesson24.ext.clickIfEnabled
 
 class StepDefinitions(private val testContext: TestContext<*>) {
 
@@ -25,7 +31,19 @@ class StepDefinitions(private val testContext: TestContext<*>) {
         }
     }
 
+    fun click(step: String, element: UiBaseActions) {
+        execute(step) {
+            element.click()
+        }
+    }
+
     fun isDisplayed(step: String, element: BaseAssertions) {
+        execute(step) {
+            element.isDisplayed()
+        }
+    }
+
+    fun isDisplayed(step: String, element: UiBaseAssertions) {
         execute(step) {
             element.isDisplayed()
         }
@@ -103,6 +121,18 @@ class StepDefinitions(private val testContext: TestContext<*>) {
     fun swipeSwitchRight(step: String, element: SwitchableActions) {
         execute(step) {
             element.swipeSwitchThumb(RIGHT)
+        }
+    }
+
+    fun clickIfEnabled(step: String, element: NodeActions) {
+        execute(step) {
+            element.clickIfEnabled()
+        }
+    }
+
+    fun assertTrimmedTextIsEquals(step: String, element: NodeAssertions, expected: String) {
+        execute(step) {
+            element.assertTrimmedTextIsEquals(expected)
         }
     }
 

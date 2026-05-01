@@ -1,5 +1,8 @@
 package org.wikipedia.lesson19.ext
 
+import com.kaspersky.components.kautomator.component.common.assertions.UiBaseAssertions
+import io.github.kakaocup.compose.node.action.NodeActions
+import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.kakao.check.CheckableAssertions
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
@@ -7,6 +10,7 @@ import io.github.kakaocup.kakao.text.TextViewAssertions
 import org.wikipedia.lesson20.ext.equalsWithTrim
 import org.wikipedia.lesson23.kwebview.KWebViewElement
 import org.wikipedia.lesson23.kwebview.KWebViewList
+import org.wikipedia.lesson24.getName
 
 class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
 
@@ -15,6 +19,13 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
     fun isDisplayed(element: BaseAssertions) {
         steps.isDisplayed(
             "Verify text displayed '${(element as BaseActions).getName()}'",
+            element
+        )
+    }
+
+    fun isDisplayed(element: UiBaseAssertions) {
+        steps.isDisplayed(
+            "Verify text displayed '${element}'", // problem with class cast
             element
         )
     }
@@ -97,5 +108,13 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
 
     fun equalsWithTrim(text: String, element: TextViewAssertions) {
         element.equalsWithTrim(text)
+    }
+
+    fun assertTrimmedTextIsEquals(element: NodeAssertions, expected: String) {
+        steps.assertTrimmedTextIsEquals(
+            "Verify trimmed text is equals '${(element as NodeActions).getName()}'",
+            element,
+            expected
+        )
     }
 }

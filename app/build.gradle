@@ -261,7 +261,7 @@ dependencies {
     androidTestImplementation libs.espresso.contrib
     androidTestImplementation libs.androidx.espresso.intents
     androidTestImplementation libs.espresso.web
-    androidTestImplementation "com.kaspersky.android-components:kaspresso:1.6.0"
+    androidTestImplementation "com.kaspersky.android-components:kaspresso:1.6.1"
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.uiautomator
     androidTestImplementation libs.room.testing
@@ -289,7 +289,8 @@ dependencies {
     androidTestImplementation(composeBom)
     debugImplementation(libs.compose.debug.test)
     debugImplementation(composeBom)
-    androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.6.0")
+    androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.6.1")
+    androidTestImplementation "com.kaspersky.android-components:kaspresso-compose-support:1.6.1"
 }
 
 tasks.register("deleteLocalAllureResults", Delete) {
