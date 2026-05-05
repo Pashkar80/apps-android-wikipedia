@@ -4,8 +4,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.junit.Rule
 import org.junit.Test
-import org.wikipedia.lesson10.UiOnboardingScreen
-import org.wikipedia.lesson10.UiWikipediaLanguagesScreen
 import org.wikipedia.lesson17.BaseTest
 import org.wikipedia.lesson18.onboardingscreen.OnboardingScreen
 import org.wikipedia.lesson19.ext.action
@@ -28,13 +26,17 @@ class AddLanguageTest : BaseTest() {
         run {
             action.click(OnboardingScreen.addLanguageButton)
             action.click(WikipediaLanguageScreen.addLanguageButton)
-            AddLanguageScreen().getFrenchItem {
+            AddLanguageScreen.getFrenchItem {
                 verify.assertTrimmedTextIsEquals(localeName, "Français")
                 verify.assertTrimmedTextIsEquals(canonicName, "French")
                 action.clickIfEnabled(localeName)
             }
-            action.click(UiWikipediaLanguagesScreen.backButton)
-            verify.isDisplayed(UiOnboardingScreen.frenchLanguageOption)
+            action.click(WikipediaLanguageScreen.backButton)
+            OnboardingScreen.page(0) {
+                languageBlockByIndex(1) {
+                    verify.hasText(this, "2.\t\tFrançais")
+                }
+            }
         }
     }
 }

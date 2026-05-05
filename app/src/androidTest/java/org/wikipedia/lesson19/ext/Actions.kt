@@ -1,6 +1,5 @@
 package org.wikipedia.lesson19.ext
 
-import com.kaspersky.components.kautomator.component.common.actions.UiBaseActions
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.views.KBaseView
@@ -20,10 +19,6 @@ class Actions(private val steps: StepDefinitions) : StepsDsl<Actions>() {
 
     fun click(element: KWebViewElement) {
         steps.click("Click on '${element.getName()}'", element)
-    }
-
-    fun click(element: UiBaseActions) {
-        steps.click("Click on '${element}'", element) // problem with cast
     }
 
     fun multiAction(element: KBaseView<*>, text: String? = null) {

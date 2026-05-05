@@ -8,6 +8,8 @@ import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
+import org.wikipedia.lesson19.ext.invokeAtIndex
+import org.wikipedia.lesson19.ext.invokeWithText
 import org.wikipedia.lesson19.ext.name
 import org.wikipedia.lesson19.ext.withParent
 
@@ -40,5 +42,13 @@ class PagerItem(matcher: Matcher<View>) : KViewPagerItem<PagerItem>(matcher) {
                 itemType(::LanguageItem)
             }
         ).name(withParent("List languages"))
+    }
+
+    fun languageBlockByText(text: String, fnc: LanguageItem.() -> Unit) {
+        languages.invokeWithText(text, fnc)
+    }
+
+    fun languageBlockByIndex(index: Int, fnc: LanguageItem.() -> Unit) {
+        languages.invokeAtIndex(index, fnc)
     }
 }

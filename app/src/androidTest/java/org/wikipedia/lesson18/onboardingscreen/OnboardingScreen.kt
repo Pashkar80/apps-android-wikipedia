@@ -40,6 +40,7 @@ object OnboardingScreen : NamedScreen<OnboardingScreen>() {
         }
     ).name(withParent("Slider"))
 
+
     fun page(index: Int, fnc: PagerItem.() -> Unit) {
         pager.invokeByIndex(index, fnc)
     }

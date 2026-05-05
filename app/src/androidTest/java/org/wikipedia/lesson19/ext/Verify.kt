@@ -1,6 +1,5 @@
 package org.wikipedia.lesson19.ext
 
-import com.kaspersky.components.kautomator.component.common.assertions.UiBaseAssertions
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.kakao.check.CheckableAssertions
@@ -19,13 +18,6 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
     fun isDisplayed(element: BaseAssertions) {
         steps.isDisplayed(
             "Verify text displayed '${(element as BaseActions).getName()}'",
-            element
-        )
-    }
-
-    fun isDisplayed(element: UiBaseAssertions) {
-        steps.isDisplayed(
-            "Verify text displayed '${element}'", // problem with class cast
             element
         )
     }

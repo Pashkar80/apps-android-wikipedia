@@ -4,7 +4,7 @@ import org.wikipedia.compose.uitest.Tags.LANGUAGE_LIST
 import org.wikipedia.lesson24.ext.createLazyList
 import org.wikipedia.lesson24.ext.invokeWithText
 
-class AddLanguageScreen : ComposeNamedScreen<AddLanguageScreen>() {
+object AddLanguageScreen : ComposeNamedScreen<AddLanguageScreen>() {
     override val screenName: String = "Add Language Screen"
 
 

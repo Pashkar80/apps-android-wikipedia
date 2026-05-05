@@ -57,7 +57,6 @@ class PagerItem(matcher: Matcher<View>) : KViewPagerItem<PagerItem>(matcher) {
         itemTypeBuilder = {
             itemType(::LanguageItem)
         }
-
     )
 }
 

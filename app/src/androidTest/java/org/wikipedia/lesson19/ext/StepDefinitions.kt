@@ -1,7 +1,5 @@
 package org.wikipedia.lesson19.ext
 
-import com.kaspersky.components.kautomator.component.common.actions.UiBaseActions
-import com.kaspersky.components.kautomator.component.common.assertions.UiBaseAssertions
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
@@ -16,8 +14,18 @@ import org.wikipedia.lesson23.kwebview.KWebViewElement
 import org.wikipedia.lesson23.kwebview.KWebViewList
 import org.wikipedia.lesson24.ext.assertTrimmedTextIsEquals
 import org.wikipedia.lesson24.ext.clickIfEnabled
+import org.wikipedia.lesson25.screen.CloseGotIt
+import org.wikipedia.lesson25.screen.ClosePlayTodayGame
+import org.wikipedia.lesson25.screen.PassInterferingScreens
 
 class StepDefinitions(private val testContext: TestContext<*>) {
+
+    private val passInterferingScreens = PassInterferingScreens(
+        listOf(
+            ClosePlayTodayGame(testContext),
+            CloseGotIt(testContext)
+        )
+    )
 
     fun click(step: String, element: BaseActions) {
         execute(step) {
@@ -31,19 +39,7 @@ class StepDefinitions(private val testContext: TestContext<*>) {
         }
     }
 
-    fun click(step: String, element: UiBaseActions) {
-        execute(step) {
-            element.click()
-        }
-    }
-
     fun isDisplayed(step: String, element: BaseAssertions) {
-        execute(step) {
-            element.isDisplayed()
-        }
-    }
-
-    fun isDisplayed(step: String, element: UiBaseAssertions) {
         execute(step) {
             element.isDisplayed()
         }
@@ -138,7 +134,12 @@ class StepDefinitions(private val testContext: TestContext<*>) {
 
     private fun execute(step: String, fnc: () -> Unit) {
         testContext.step(step) {
-            fnc()
+            try {
+                fnc()
+            } catch (_: Throwable) {
+                passInterferingScreens.execute()
+                fnc()
+            }
         }
     }
 }
