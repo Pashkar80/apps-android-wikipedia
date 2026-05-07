@@ -9,6 +9,7 @@ import org.wikipedia.lesson19.ext.verify
 import org.wikipedia.lesson22.homework.BottomSheet
 
 class CloseBannerTest : BaseTest() {
+
     @Test
     fun closeBannersTest() {
         run {
