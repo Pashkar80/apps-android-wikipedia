@@ -34,8 +34,10 @@ class FeaturedArticleItem(matcher: Matcher<View>) : KRecyclerItem<FeaturedArticl
         withId(R.id.closeButton)
     }.name(withParent("Button Close"))
 
-    val themeButton = KTextView {
-        withText("Theme")
-        isDescendantOfA({ withId(R.id.page_actions_tab_layout) })
-    }.name(withParent("Button Theme"))
+    val themeButton by lazy {
+        KTextView {
+            withText("Theme")
+            isDescendantOfA({ withId(R.id.page_actions_tab_layout) })
+        }.name(withParent("Button Theme"))
+    }
 }

@@ -14,18 +14,18 @@ class SearchWidget(builder: ViewBuilder.() -> Unit) : KWidget<SearchWidget>(buil
     val searchIcon by lazy {
         KView(matcher) {
             withContentDescription("Search Wikipedia")
-        }.name(withParent(""))
+        }.name(withParent("Search Icon"))
     }
 
     val searchText by lazy {
         KTextView(matcher) {
             isInstanceOf(MaterialTextView::class.java)
-        }.name(withParent(""))
+        }.name(withParent("Search Text"))
     }
 
     val voiceIcon by lazy {
         KImageView(matcher) {
             withId(R.id.voice_search_button)
-        }.name(withParent(""))
+        }.name(withParent("Voice Icon"))
     }
 }

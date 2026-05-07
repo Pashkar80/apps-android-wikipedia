@@ -14,9 +14,9 @@ import org.wikipedia.lesson23.kwebview.KWebViewElement
 import org.wikipedia.lesson23.kwebview.KWebViewList
 import org.wikipedia.lesson24.ext.assertTrimmedTextIsEquals
 import org.wikipedia.lesson24.ext.clickIfEnabled
-import org.wikipedia.lesson25.screen.CloseGotIt
-import org.wikipedia.lesson25.screen.ClosePlayTodayGame
 import org.wikipedia.lesson25.screen.PassInterferingScreens
+import org.wikipedia.lesson25.screenbehavior.CloseGotIt
+import org.wikipedia.lesson25.screenbehavior.ClosePlayTodayGame
 
 class StepDefinitions(private val testContext: TestContext<*>) {
 
