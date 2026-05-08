@@ -7,6 +7,7 @@ import org.wikipedia.lesson18.onboardingscreen.OnboardingScreen
 import org.wikipedia.lesson19.ext.action
 import org.wikipedia.lesson19.ext.verify
 import org.wikipedia.lesson22.homework.BottomSheet
+import org.wikipedia.lesson23.screen.ArticleScreen
 
 class CloseBannerTest : BaseTest() {
 
@@ -17,11 +18,11 @@ class CloseBannerTest : BaseTest() {
                 click(OnboardingScreen.skipButton)
                 ExploreScreen.featuredArticleBlock(1) {
                     click(this)
-                    action.click(this.themeButton)
                 }
-                BottomSheet.themeWidget {
-                    verify.isDisplayed(this)
-                }
+                click(ArticleScreen.themeButton)
+            }
+            BottomSheet.themeWidget {
+                verify.isDisplayed(this)
             }
         }
     }

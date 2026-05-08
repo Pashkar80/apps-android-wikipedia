@@ -1,8 +1,10 @@
 package org.wikipedia.lesson23.screen
 
+import io.github.kakaocup.kakao.text.KTextView
 import io.github.kakaocup.kakao.web.KWebView
 import org.wikipedia.R
 import org.wikipedia.lesson18.NamedScreen
+import org.wikipedia.lesson19.ext.name
 import org.wikipedia.lesson23.ReferencesItem
 import org.wikipedia.lesson23.ext.withXpath
 import org.wikipedia.lesson23.ext.withXpathList
@@ -35,5 +37,12 @@ object ArticleScreen : NamedScreen<ArticleScreen>() {
 
     fun referenceItem(index: Int, fnc: ReferencesItem.() -> Unit) {
         referencesList.childAt(index, fnc)
+    }
+
+    val themeButton by lazy {
+        KTextView {
+            withText("Theme")
+            isDescendantOfA({ withId(R.id.page_actions_tab_layout) })
+        }.name(withParent("Button Theme"))
     }
 }

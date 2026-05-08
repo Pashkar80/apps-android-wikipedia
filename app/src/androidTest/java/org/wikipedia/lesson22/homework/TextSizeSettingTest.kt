@@ -6,6 +6,7 @@ import org.wikipedia.lesson18.explorerscreen.ExploreScreen
 import org.wikipedia.lesson18.onboardingscreen.OnboardingScreen
 import org.wikipedia.lesson19.ext.action
 import org.wikipedia.lesson19.ext.verify
+import org.wikipedia.lesson23.screen.ArticleScreen
 
 class TextSizeSettingTest : BaseTest() {
 
@@ -16,8 +17,8 @@ class TextSizeSettingTest : BaseTest() {
                 click(OnboardingScreen.skipButton)
                 ExploreScreen.featuredArticleBlock(1) {
                     click(this)
-                    click(themeButton)
                 }
+                click(ArticleScreen.themeButton)
             }
             BottomSheet.serifSettingWidget {
                 verify.isDisplayed(this)
