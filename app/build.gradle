@@ -19,6 +19,14 @@ static def computeVersionName(versionCode, label) {
     return "${versionCode}-${label}-${(new Date()).format('yyyy-MM-dd')}"
 }
 
+def autotestDataPropertiesFile = rootProject.file("data.properties")
+def autotestDataProperties = new Properties()
+if (autotestDataPropertiesFile.exists()) {
+    autotestDataPropertiesFile.withInputStream { stream ->
+        autotestDataProperties.load(stream)
+    }
+}
+
 android {
     compileSdk = 36
 
@@ -99,6 +107,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             testProguardFiles 'test-proguard-rules.pro'
+
+            autotestDataProperties.each { key, value ->
+                buildConfigField "String", key.toString(), "\"${value.toString()}\""
+            }
         }
         release {
             minifyEnabled true
