@@ -11,16 +11,4 @@ object UiSearchScreen : UiScreen<UiSearchScreen>() {
             withText(text)
         }.click()
     }
-
-    fun isDisplayedResultText(text: String) {
-        UiTextView {
-            withText(text)
-        }.isDisplayed()
-    }
-
-    fun isNotDisplayedResultText(text: String) {
-        UiTextView {
-            withText(text)
-        }.isNotDisplayed()
-    }
 }

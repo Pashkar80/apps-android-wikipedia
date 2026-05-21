@@ -5,7 +5,6 @@ import androidx.test.uiautomator.UiSelector
 import io.qameta.allure.kotlin.Description
 import org.junit.Rule
 import org.junit.Test
-import org.wikipedia.lesson13.UiSearchScreen
 import org.wikipedia.lesson17.BaseTest
 import org.wikipedia.lesson18.explorerscreen.ExploreScreen
 import org.wikipedia.lesson18.onboardingscreen.OnboardingScreen
@@ -32,7 +31,11 @@ class BuildConfigTest : BaseTest() {
                     action.multiAction(this, customRule.testData)
                 }
             }
-            UiSearchScreen.isDisplayedResultText(customRule.testData)
+            step("Verify search result") {
+                device.uiDevice.findObject(
+                    UiSelector().text(customRule.testData)
+                ).exists()
+            }
         }
     }
 
@@ -46,13 +49,14 @@ class BuildConfigTest : BaseTest() {
             SearchScreen {
                 searchField {
                     action.click(this)
-                    action.multiAction(this, customRule.testData)
+                    action.typeText(this, customRule.testData) // написать шаги
                 }
             }
-            device.uiDevice.findObject(
-                UiSelector().text("No results")
-            ).exists()
-            //device.uiDevice.findObject(UiSelector().text("No results"))
+            step("Verify search result") {
+                device.uiDevice.findObject(
+                    UiSelector().text("No results")
+                ).exists()
+            }
         }
     }
 
@@ -63,13 +67,13 @@ class BuildConfigTest : BaseTest() {
     }
 
     @Test
-    @Description("inval")
+    @Description("invalid")
     fun invalidSearchTest() {
         verifyInvalidSearch()
     }
 
     @Test
-    @Description("dfserd")
+    @Description("random")
     fun simpleSearchTest() {
         verifyInvalidSearch()
     }

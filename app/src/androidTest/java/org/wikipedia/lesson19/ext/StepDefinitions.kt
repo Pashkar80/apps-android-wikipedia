@@ -6,6 +6,7 @@ import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.kakao.check.CheckableAssertions
 import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
+import io.github.kakaocup.kakao.edit.KEditText
 import io.github.kakaocup.kakao.switch.SwitchableActions
 import io.github.kakaocup.kakao.switch.SwitchableActions.Direction.LEFT
 import io.github.kakaocup.kakao.switch.SwitchableActions.Direction.RIGHT
@@ -36,6 +37,12 @@ class StepDefinitions(private val testContext: TestContext<*>) {
     fun click(step: String, element: KWebViewElement) {
         execute(step) {
             element.performWebViewAction { click() }
+        }
+    }
+
+    fun typeText(step: String, element: KEditText, text: String) {
+        execute(step) {
+            element.typeText(text)
         }
     }
 
