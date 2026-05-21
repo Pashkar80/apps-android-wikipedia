@@ -49,7 +49,7 @@ class BuildConfigTest : BaseTest() {
             SearchScreen {
                 searchField {
                     action.click(this)
-                    action.typeText(this, customRule.testData) // написать шаги
+                    action.typeText(this, customRule.testData)
                 }
             }
             step("Verify search result") {
